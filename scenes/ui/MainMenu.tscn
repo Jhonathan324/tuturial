@@ -1,0 +1,68 @@
+[gd_scene load_steps=3 format=3 uid="uid://cj2jr85t4jhw3"]
+
+[ext_resource type="Theme" uid="uid://xwo10a2tymia" path="res://scenes/ui/ui_theme.tres" id="1_vjtqc"]
+[ext_resource type="Script" uid="uid://bu7u086u545du" path="res://scripts/MainMenu.gd" id="2_6jbdy"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_vjtqc")
+script = ExtResource("2_6jbdy")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.4306268, 0.40688094, 0.7668044, 1)
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ButtonContainer" type="VBoxContainer" parent="CenterContainer"]
+layout_mode = 2
+
+[node name="StartButton" type="Button" parent="CenterContainer/ButtonContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+text = "Inciar"
+
+[node name="SettingsButton" type="Button" parent="CenterContainer/ButtonContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+text = "Configurações"
+
+[node name="CreditsButton" type="Button" parent="CenterContainer/ButtonContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+text = "Sobre"
+
+[node name="QuitButton" type="Button" parent="CenterContainer/ButtonContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+text = "Sair"
+
+[node name="TitleLabel" type="Label" parent="."]
+layout_mode = 0
+offset_left = 459.0
+offset_top = 70.0
+offset_right = 683.0
+offset_bottom = 119.0
+theme_override_colors/font_color = Color(0.28627452, 0.7882353, 0.43137255, 1)
+theme_override_colors/font_shadow_color = Color(0.3665929, 2.1874938, 2.2962046, 0.14509805)
+theme_override_constants/line_spacing = 4
+theme_override_constants/shadow_offset_y = 4
+theme_override_constants/shadow_outline_size = 9
+theme_override_font_sizes/font_size = 35
+text = "Jogo  Tuturial"
