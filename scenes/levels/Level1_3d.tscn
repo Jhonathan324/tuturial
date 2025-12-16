@@ -1,8 +1,9 @@
-[gd_scene load_steps=14 format=3 uid="uid://8x73fk33ef7q"]
+[gd_scene load_steps=15 format=3 uid="uid://8x73fk33ef7q"]
 
 [ext_resource type="Script" uid="uid://dkp25tw85dfvt" path="res://scripts/Player3D.gd" id="1_x50li"]
 [ext_resource type="PackedScene" uid="uid://rx1nv1har565" path="res://scenes/ui/HUD3D.tscn" id="2_olkgo"]
 [ext_resource type="PackedScene" uid="uid://0b0i0shhwxsa" path="res://scenes/entities/Enemy3D.tscn" id="3_olkgo"]
+[ext_resource type="PackedScene" uid="uid://tdrjyqkoas3j" path="res://scenes/items/Coin3D.tscn" id="5_e7i60"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ce3jd"]
 albedo_color = Color(0.39215687, 0.3529412, 1, 1)
@@ -117,7 +118,14 @@ environment = SubResource("Environment_0ymf6")
 
 [node name="HUD3D" parent="UILayer" instance=ExtResource("2_olkgo")]
 
-[node name="Enemy1" type="Node3D" parent="." groups=["enemies"]]
+[node name="Enemy1" parent="." groups=["enemies"] instance=ExtResource("3_olkgo")]
+transform = Transform3D(0.9716317, 0, -0.236499, 0, 1, 0, 0.236499, 0, 0.9716317, -5.122342, 2.2016287, -5.451865)
 
-[node name="enemy" parent="Enemy1" instance=ExtResource("3_olkgo")]
-transform = Transform3D(0.9716317, 0, -0.236499, 0, 1, 0, 0.236499, 0, 0.9716317, 0, 2.2016287, -5.451865)
+[node name="Enemy2" parent="." groups=["enemies"] instance=ExtResource("3_olkgo")]
+transform = Transform3D(0.9716317, 0, -0.236499, 0, 1, 0, 0.236499, 0, 0.9716317, -5.122342, 2.2016287, 5.713023)
+
+[node name="Enemy3" parent="." groups=["enemies"] instance=ExtResource("3_olkgo")]
+transform = Transform3D(0.9716317, 0, -0.236499, 0, 1, 0, 0.236499, 0, 0.9716317, 8.932161, 3.6734495, -5.451865)
+
+[node name="Coin1" parent="." instance=ExtResource("5_e7i60")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.4142284, 4.561724, -4.6730995)

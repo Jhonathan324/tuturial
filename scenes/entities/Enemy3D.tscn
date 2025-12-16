@@ -11,9 +11,9 @@ material = SubResource("StandardMaterial3D_lx1b7")
 [sub_resource type="SphereShape3D" id="SphereShape3D_21rse"]
 
 [node name="Enemy3D" type="Node3D"]
-script = ExtResource("1_iuhln")
 
 [node name="EnemyBody" type="CharacterBody3D" parent="."]
+script = ExtResource("1_iuhln")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="EnemyBody"]
 mesh = SubResource("SphereMesh_iuhln")
