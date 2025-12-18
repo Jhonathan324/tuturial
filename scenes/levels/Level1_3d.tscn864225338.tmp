@@ -59,7 +59,6 @@ current = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.3, -0.2, -0.3)
 
 [node name="Gun" parent="Player3D/WeaponHolder" instance=ExtResource("2_wb730")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.3098297, 0.58851457, -0.008653164)
 
 [node name="Obstacle1" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 1, 0)

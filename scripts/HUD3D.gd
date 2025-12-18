@@ -1,4 +1,5 @@
 extends Control
+var points = 0
 
 func _ready():
 	# Primeiro, vamos verificar se encontramos os nós
@@ -23,7 +24,6 @@ func _ready():
 		print("✗ HealthLabel NÃO encontrado")
 		# Cria um novo se não existir
 		create_health_label()
-	
 	print("=== HUD PRONTO ===")
 
 func create_score_label():
@@ -46,7 +46,8 @@ func create_health_label():
 	print("✓ HealthLabel criado automaticamente")
 
 # Funções para atualizar de outros scripts
-func update_score(points):
+func update_score(points_add):
+	points = points + points_add 
 	var label = get_node_or_null("ScoreLabel")
 	if label:
 		label.text = "PONTOS: " + str(points)

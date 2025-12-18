@@ -9,6 +9,7 @@ func _ready():
 
 func _physics_process(delta):
 	if not player:
+		print("player não encontrado _physics_process")
 		return
 	
 	var direction = (player.global_position - global_position).normalized()

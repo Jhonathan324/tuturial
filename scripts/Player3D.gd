@@ -3,13 +3,19 @@ extends CharacterBody3D
 @export var speed = 5.0
 @export var jump_velocity = 8
 @export var mouse_sensitivity = 0.002
+@export var deceleration_speed = 10.0  # Nova variável para desaceleração
 
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 @onready var camera = $PlayerCamera
 
+@onready var gun = $WeaponHolder/Gun
+var bullet_scene = preload("res://scenes/weapons/Bullet.tscn")
+var can_shoot = true
+var shoot_cooldown = 0.2
+
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-
+ 
 func _input(event):
 	if event is InputEventMouseMotion:
 		rotate_y(-event.relative.x * mouse_sensitivity)
@@ -21,6 +27,12 @@ func _input(event):
 			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 		else:
 			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+			
+	if event.is_action_pressed("shoot") and can_shoot:
+		shoot()
+		can_shoot = false
+		await get_tree().create_timer(shoot_cooldown).timeout
+		can_shoot = true
 
 func _physics_process(delta):
 	if not is_on_floor():
@@ -36,7 +48,18 @@ func _physics_process(delta):
 		velocity.x = direction.x * speed
 		velocity.z = direction.z * speed
 	else:
-		velocity.x = move_toward(velocity.x, 0, speed)
-		velocity.z = move_toward(velocity.z, 0, speed)
+		# Correção: Usar um valor específico para desaceleração
+		velocity.x = move_toward(velocity.x, 0, deceleration_speed * delta)
+		velocity.z = move_toward(velocity.z, 0, deceleration_speed * delta)
 
 	move_and_slide()
+
+func shoot():
+	var bullet = bullet_scene.instantiate()
+	get_tree().current_scene.add_child(bullet)
+	
+	bullet.global_position = gun.global_position
+	bullet.global_rotation = global_rotation
+	
+	var forward = -global_transform.basis.z
+	bullet.apply_central_impulse(forward*10)
