@@ -56,10 +56,15 @@ func _physics_process(delta):
 
 func shoot():
 	var bullet = bullet_scene.instantiate()
-	get_tree().current_scene.add_child(bullet)
+	get_parent().add_child(bullet)
 	
+	# Posicionar na arma
 	bullet.global_position = gun.global_position
-	bullet.global_rotation = global_rotation
 	
-	var forward = -global_transform.basis.z
-	bullet.apply_central_impulse(forward*10)
+	# Definir direção (para onde a câmera está olhando)
+	var forward = -camera.global_transform.basis.z
+	bullet.set_direction(forward)
+	
+	# Tocar som de tiro
+	if has_node("ShootSound"):
+		$ShootSound.play()

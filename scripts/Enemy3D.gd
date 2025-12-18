@@ -23,8 +23,25 @@ func _physics_process(delta):
 
 func take_damage(amount):
 	health -= amount
+	print("Inimigo tomou dano: ", health)
+	
 	if health <= 0:
 		die()
 
 func die():
+	# Efeito de morte
+	var death_particles = GPUParticles3D.new()
+	death_particles.amount = 50
+	death_particles.lifetime = 1.0
+	death_particles.one_shot = true
+	
+	get_parent().add_child(death_particles)
+	death_particles.global_position = global_position
+	death_particles.emitting = true
+	
+	# Remover inimigo
 	queue_free()
+	
+	# Remover partículas após 2 segundos
+	await get_tree().create_timer(2.0).timeout
+	death_particles.queue_free()
