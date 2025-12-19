@@ -33,6 +33,18 @@ grow_vertical = 2
 [node name="ButtonContainer" type="VBoxContainer" parent="CenterContainer"]
 layout_mode = 2
 
+[node name="TitleLabel" type="Label" parent="CenterContainer/ButtonContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.28627452, 0.7882353, 0.43137255, 1)
+theme_override_colors/font_shadow_color = Color(0.3665929, 2.1874938, 2.2962046, 0.14509805)
+theme_override_colors/font_outline_color = Color(0, 0.7372549, 0, 1)
+theme_override_constants/line_spacing = 12
+theme_override_constants/shadow_offset_y = 4
+theme_override_constants/outline_size = 2
+theme_override_constants/shadow_outline_size = 9
+theme_override_font_sizes/font_size = 35
+text = "Jogo  Tuturial"
+
 [node name="StartButton" type="Button" parent="CenterContainer/ButtonContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 25
@@ -52,20 +64,6 @@ text = "Sobre"
 layout_mode = 2
 theme_override_font_sizes/font_size = 25
 text = "Sair"
-
-[node name="TitleLabel" type="Label" parent="."]
-layout_mode = 0
-offset_left = 459.0
-offset_top = 70.0
-offset_right = 683.0
-offset_bottom = 119.0
-theme_override_colors/font_color = Color(0.28627452, 0.7882353, 0.43137255, 1)
-theme_override_colors/font_shadow_color = Color(0.3665929, 2.1874938, 2.2962046, 0.14509805)
-theme_override_constants/line_spacing = 4
-theme_override_constants/shadow_offset_y = 4
-theme_override_constants/shadow_outline_size = 9
-theme_override_font_sizes/font_size = 35
-text = "Jogo  Tuturial"
 
 [connection signal="pressed" from="CenterContainer/ButtonContainer/StartButton" to="." method="_on_start_button_pressed"]
 [connection signal="pressed" from="CenterContainer/ButtonContainer/SettingsButton" to="." method="_on_settings_button_pressed"]

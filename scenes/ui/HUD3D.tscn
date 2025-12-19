@@ -10,3 +10,19 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_ee7t6")
+
+[node name="Container" type="Container" parent="."]
+clip_contents = true
+custom_minimum_size = Vector2(2, 2)
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="Container"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3

@@ -31,10 +31,10 @@ albedo_color = Color(0.15294118, 0.68235296, 0.3764706, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_ykbsd"]
 material = SubResource("StandardMaterial3D_30yyk")
-size = Vector3(20, 0.5, 20)
+size = Vector3(100, 0.5, 100)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_3rcmi"]
-size = Vector3(20, 0.5, 20)
+size = Vector3(100, 0.5, 100)
 
 [sub_resource type="Environment" id="Environment_0ymf6"]
 background_mode = 1
@@ -60,7 +60,7 @@ current = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.3, -0.2, -0.3)
 
 [node name="Gun" parent="Player3D/WeaponHolder" instance=ExtResource("2_wb730")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.3098297, 0.58851457, -0.008653164)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0.5, 0.75)
 
 [node name="ShootSound" type="AudioStreamPlayer3D" parent="Player3D"]
 stream = ExtResource("3_e7i60")
@@ -131,13 +131,16 @@ environment = SubResource("Environment_0ymf6")
 [node name="HUD3D" parent="UILayer" instance=ExtResource("2_olkgo")]
 
 [node name="Enemy1" parent="." groups=["enemies"] instance=ExtResource("3_olkgo")]
-transform = Transform3D(0.9716317, 0, -0.236499, 0, 1, 0, 0.236499, 0, 0.9716317, -5.122342, 2.2016287, -5.451865)
+transform = Transform3D(0.9716317, 0, -0.236499, 0, 1, 0, 0.236499, 0, 0.9716317, -5.122342, 1.0242882, -8.089783)
 
 [node name="Enemy2" parent="." groups=["enemies"] instance=ExtResource("3_olkgo")]
 transform = Transform3D(0.9716317, 0, -0.236499, 0, 1, 0, 0.236499, 0, 0.9716317, -5.122342, 2.2016287, 5.713023)
 
 [node name="Enemy3" parent="." groups=["enemies"] instance=ExtResource("3_olkgo")]
 transform = Transform3D(0.9716317, 0, -0.236499, 0, 1, 0, 0.236499, 0, 0.9716317, 8.932161, 3.6734495, -5.451865)
+
+[node name="Enemy4" parent="." groups=["enemies"] instance=ExtResource("3_olkgo")]
+transform = Transform3D(0.9716317, 0, -0.236499, 0, 1, 0, 0.236499, 0, 0.9716317, -4.138092, 3.1970024, 25.048512)
 
 [node name="Coin1" parent="." instance=ExtResource("5_e7i60")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.4142284, 4.561724, -4.6730995)
