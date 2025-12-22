@@ -1,13 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://cw5p7xwl2a5e2"]
+[gd_scene load_steps=2 format=3 uid="uid://cw5p7xwl2a5e2"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_55pq6"]
-albedo_color = Color(0.58431375, 0.64705884, 0.6509804, 1)
-
-[sub_resource type="BoxMesh" id="BoxMesh_x3s45"]
-material = SubResource("StandardMaterial3D_55pq6")
-size = Vector3(0.3, 0.1, 1)
+[ext_resource type="PackedScene" uid="uid://cb8jr01qwuq0h" path="res://assets/models/gum.fbx" id="1_x3s45"]
 
 [node name="Gun" type="Node3D"]
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-mesh = SubResource("BoxMesh_x3s45")
+[node name="gum" parent="." instance=ExtResource("1_x3s45")]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
