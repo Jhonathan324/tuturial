@@ -1,0 +1,156 @@
+[gd_scene load_steps=17 format=3 uid="uid://8x73fk33ef7q"]
+
+[ext_resource type="Script" uid="uid://dkp25tw85dfvt" path="res://scripts/Player3D.gd" id="1_x50li"]
+[ext_resource type="PackedScene" uid="uid://rx1nv1har565" path="res://scenes/ui/HUD3D.tscn" id="2_olkgo"]
+[ext_resource type="PackedScene" uid="uid://cw5p7xwl2a5e2" path="res://scenes/weapons/Gun.tscn" id="2_wb730"]
+[ext_resource type="AudioStream" uid="uid://jn726jqho75u" path="res://assets/sounds/Tiro.mp3" id="3_e7i60"]
+[ext_resource type="PackedScene" uid="uid://0b0i0shhwxsa" path="res://scenes/entities/Enemy3D.tscn" id="3_olkgo"]
+[ext_resource type="PackedScene" uid="uid://tdrjyqkoas3j" path="res://scenes/items/Coin3D.tscn" id="5_e7i60"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ce3jd"]
+albedo_color = Color(0.39215687, 0.3529412, 1, 1)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_30yyk"]
+material = SubResource("StandardMaterial3D_ce3jd")
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ce3jd"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ykbsd"]
+albedo_color = Color(0.90588236, 0.29803923, 0.23529412, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_3rcmi"]
+material = SubResource("StandardMaterial3D_ykbsd")
+top_radius = 1.0
+bottom_radius = 1.0
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_0ymf6"]
+radius = 1.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_30yyk"]
+albedo_color = Color(0.15294118, 0.68235296, 0.3764706, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_ykbsd"]
+material = SubResource("StandardMaterial3D_30yyk")
+size = Vector3(100, 0.5, 100)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_3rcmi"]
+size = Vector3(100, 0.5, 100)
+
+[sub_resource type="Environment" id="Environment_0ymf6"]
+background_mode = 1
+background_color = Color(0.4, 0.4, 0.4, 1)
+
+[node name="Level1_3D" type="Node3D"]
+
+[node name="Player3D" type="CharacterBody3D" parent="." groups=["player"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2643932, 0)
+script = ExtResource("1_x50li")
+speed = null
+jump_velocity = null
+mouse_sensitivity = null
+deceleration_speed = null
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Player3D"]
+mesh = SubResource("CapsuleMesh_30yyk")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Player3D"]
+shape = SubResource("CapsuleShape3D_ce3jd")
+
+[node name="PlayerCamera" type="Camera3D" parent="Player3D"]
+transform = Transform3D(1, 0, 0, 0, 0.9848077, 0.17364818, 0, -0.17364818, 0.9848077, 0, 1, 3)
+current = true
+
+[node name="WeaponHolder" type="Node3D" parent="Player3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.3, -0.2, -0.3)
+
+[node name="Gun" parent="Player3D/WeaponHolder" instance=ExtResource("2_wb730")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0.5, 0.75)
+
+[node name="ShootSound" type="AudioStreamPlayer3D" parent="Player3D"]
+stream = ExtResource("3_e7i60")
+
+[node name="Obstacle1" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 1, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Obstacle1"]
+mesh = SubResource("CylinderMesh_3rcmi")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Obstacle1"]
+shape = SubResource("CylinderShape3D_0ymf6")
+
+[node name="Obstacle2" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.89866257, 1, 4.850562)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Obstacle2"]
+mesh = SubResource("CylinderMesh_3rcmi")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Obstacle2"]
+shape = SubResource("CylinderShape3D_0ymf6")
+
+[node name="Obstacle3" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.5007763, 1, -5.0292234)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Obstacle3"]
+mesh = SubResource("CylinderMesh_3rcmi")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Obstacle3"]
+shape = SubResource("CylinderShape3D_0ymf6")
+
+[node name="Obstacle4" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.5007763, 3.0319118, -5.0292234)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Obstacle4"]
+mesh = SubResource("CylinderMesh_3rcmi")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Obstacle4"]
+shape = SubResource("CylinderShape3D_0ymf6")
+
+[node name="Obstacle5" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.5007763, 3.0319118, 5.791157)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Obstacle5"]
+mesh = SubResource("CylinderMesh_3rcmi")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Obstacle5"]
+shape = SubResource("CylinderShape3D_0ymf6")
+
+[node name="Floor" type="StaticBody3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor"]
+mesh = SubResource("BoxMesh_ykbsd")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor"]
+shape = SubResource("BoxShape3D_3rcmi")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.70710677, 0.49999997, -0.49999997, 0, 0.70710677, 0.70710677, 0.70710677, -0.49999997, 0.49999997, 10, 5, 0)
+light_energy = 1.2
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_0ymf6")
+
+[node name="UILayer" type="CanvasLayer" parent="."]
+
+[node name="HUD3D" parent="UILayer" instance=ExtResource("2_olkgo")]
+
+[node name="Enemy1" parent="." groups=["enemies"] instance=ExtResource("3_olkgo")]
+transform = Transform3D(0.9716317, 0, -0.236499, 0, 1, 0, 0.236499, 0, 0.9716317, -5.122342, 1.0242882, -8.089783)
+
+[node name="Enemy2" parent="." groups=["enemies"] instance=ExtResource("3_olkgo")]
+transform = Transform3D(0.9716317, 0, -0.236499, 0, 1, 0, 0.236499, 0, 0.9716317, -5.122342, 2.2016287, 5.713023)
+
+[node name="Enemy3" parent="." groups=["enemies"] instance=ExtResource("3_olkgo")]
+transform = Transform3D(0.9716317, 0, -0.236499, 0, 1, 0, 0.236499, 0, 0.9716317, 8.932161, 3.6734495, -5.451865)
+
+[node name="Enemy4" parent="." groups=["enemies"] instance=ExtResource("3_olkgo")]
+transform = Transform3D(0.9716317, 0, -0.236499, 0, 1, 0, 0.236499, 0, 0.9716317, -4.138092, 3.1970024, 25.048512)
+
+[node name="Coin1" parent="." instance=ExtResource("5_e7i60")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.4142284, 4.561724, -4.6730995)
+
+[node name="Coin2" parent="." instance=ExtResource("5_e7i60")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.4142284, 4.561724, 5.668535)
+
+[node name="Coin3" parent="." instance=ExtResource("5_e7i60")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.801573, 2.901585, 0.19063759)

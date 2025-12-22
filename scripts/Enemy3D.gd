@@ -7,7 +7,7 @@ var health = 50
 func _ready():
 	player = get_tree().get_nodes_in_group("player")[0]
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	if not player:
 		print("player não encontrado _physics_process")
 		return

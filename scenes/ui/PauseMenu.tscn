@@ -1,15 +1,8 @@
 [gd_scene format=3 uid="uid://dllnqdbhjicf1"]
 
-[node name="PauseMenu" type="Control"]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="PauseMenu" type="CanvasLayer"]
 
 [node name="Panel" type="Panel" parent="."]
-layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -39,12 +32,12 @@ theme_override_constants/shadow_outline_size = 9
 theme_override_font_sizes/font_size = 35
 text = "Jogo  Tuturial"
 
-[node name="ResumeButton" type="Button" parent="Panel/CenterContainer/VBoxContainer"]
+[node name="ContinueButton" type="Button" parent="Panel/CenterContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 25
 text = "CONTINUAR"
 
-[node name="MenuButton" type="Button" parent="Panel/CenterContainer/VBoxContainer"]
+[node name="MainMenuButton" type="Button" parent="Panel/CenterContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 25
 text = "MENU PRINCIPAL"
