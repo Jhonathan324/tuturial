@@ -2,7 +2,7 @@ extends Node
 
 @onready var level_generator = $LevelGenerator
 @onready var player = $Player3D
-@onready var hud = $CanvasLayer/HUD3D
+@onready var hud = $UILayer/HUD3D
 
 var current_level_data = {}
 var level_timer = 0.0
@@ -85,7 +85,7 @@ func _on_level_changed(new_level):
 	print("Nível mudou para: ", new_level)
 	hud.update_level(new_level)
 
-func _on_difficulty_changed(new_difficulty):
+func _on_difficulty_changed(_new_difficulty):
 	print("Dificuldade alterada")
 	# Reiniciar nível com nova dificuldade
 	start_level()

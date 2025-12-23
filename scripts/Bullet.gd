@@ -28,7 +28,7 @@ func _on_body_entered(body):
 		return
 	
 	# Causar dano a inimigos
-	if body.get_parent().is_in_group("enemies"):
+	if body.is_in_group("enemies"):
 		body.take_damage(damage)
 	
 	# Efeito de impacto

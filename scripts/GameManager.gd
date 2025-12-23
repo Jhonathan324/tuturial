@@ -60,16 +60,19 @@ var level_settings = {
 }
 
 func _ready():
-	# Salvar referência global
+	# Inicializar o singleton
 	_setup_as_singleton()
+	
+	# Opcional: carregar jogo salvo
+	load_game()
+	
+	print("GameManager pronto. Dificuldade: ", current_difficulty, " Nível: ", current_level)
 
 func _setup_as_singleton():
-	# Garante que só existe um GameManagerSingleton
-	if get_tree().root.has_node("GameManagerSingleton"):
-		queue_free()
-	else:
-		get_tree().root.add_child(self)
-		name = "GameManagerSingleton"
+	# NÃO fazer nada - o Autoload já adicionou
+	# Apenas garantir que o nome está correto
+	name = "GameManager"
+	print("GameManager inicializado via Autoload")
 
 func set_difficulty(diff: Difficulty):
 	current_difficulty = diff

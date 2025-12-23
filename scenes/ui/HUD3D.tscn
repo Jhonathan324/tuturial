@@ -11,18 +11,30 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_ee7t6")
 
-[node name="Container" type="Container" parent="."]
-clip_contents = true
-custom_minimum_size = Vector2(2, 2)
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_direction = 3
 layout_mode = 1
-anchors_preset = 13
-anchor_left = 0.5
-anchor_right = 0.5
+anchors_preset = 15
+anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="ColorRect" type="ColorRect" parent="Container"]
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer"]
 layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
+
+[node name="LevelLabel" type="Label" parent="HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "NÍVEL: 1"
+
+[node name="LivesLabel" type="Label" parent="HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "VIDAS: 3"
+
+[node name="TimerLabel" type="Label" parent="HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "TEMPO: 120"
+
+[node name="DifficultyLabel" type="Label" parent="HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "DIFICULDADE: NORMAL"

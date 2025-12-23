@@ -45,10 +45,20 @@ theme_override_constants/shadow_outline_size = 9
 theme_override_font_sizes/font_size = 35
 text = "Jogo  Tuturial"
 
-[node name="StartButton" type="Button" parent="CenterContainer/ButtonContainer"]
+[node name="ResumeButton" type="Button" parent="CenterContainer/ButtonContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 25
-text = "Inciar"
+text = "CONTINUAR JOGO"
+
+[node name="NewButton" type="Button" parent="CenterContainer/ButtonContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+text = "NOVO JOGO"
+
+[node name="DifficultyButton" type="Button" parent="CenterContainer/ButtonContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+text = "SELECIONAR DIFICULDADE"
 
 [node name="SettingsButton" type="Button" parent="CenterContainer/ButtonContainer"]
 layout_mode = 2
@@ -65,7 +75,9 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 25
 text = "Sair"
 
-[connection signal="pressed" from="CenterContainer/ButtonContainer/StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="CenterContainer/ButtonContainer/ResumeButton" to="." method="_on_continue_pressed"]
+[connection signal="pressed" from="CenterContainer/ButtonContainer/NewButton" to="." method="_on_new_game_pressed"]
+[connection signal="pressed" from="CenterContainer/ButtonContainer/DifficultyButton" to="." method="_on_difficulty_pressed"]
 [connection signal="pressed" from="CenterContainer/ButtonContainer/SettingsButton" to="." method="_on_settings_button_pressed"]
 [connection signal="pressed" from="CenterContainer/ButtonContainer/CreditsButton" to="." method="_on_credits_button_pressed"]
 [connection signal="pressed" from="CenterContainer/ButtonContainer/QuitButton" to="." method="_on_quit_button_pressed"]

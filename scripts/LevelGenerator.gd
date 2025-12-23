@@ -5,12 +5,11 @@ extends Node3D
 @export var coin_scene: PackedScene
 @export var obstacle_scene: PackedScene
 @export var spawn_point_scene: PackedScene
+@export var level_size = 20.0
 
 # Referências
-@onready var floor_node = $Floor
 var rng = RandomNumberGenerator.new()
 var spawned_objects = []
-var level_size = 20.0
 
 func _ready():
 	rng.randomize()
@@ -28,20 +27,61 @@ func generate_level():
 	# Atualizar tamanho do nível
 	level_size = level_config.size
 	
-	# Ajustar chão
-	if floor_node:
-		floor_node.scale = Vector3(level_size / 10, 0.5, level_size / 10)
+	# Criar ou ajustar chão
+	create_floor()
 	
 	# Gerar objetos
 	generate_obstacles(level_config.obstacles)
 	generate_coins(level_config.coins)
 	generate_enemies(level_config.enemies, diff_config)
-	generate_spawn_points(4)  # Pontos de spawn do jogador
+	generate_spawn_points(4)
+
+
+func create_floor():
+	# Verificar se já existe um chão
+	var existing_floor = get_node_or_null("Floor")
+	if existing_floor:
+		existing_floor.queue_free()
+	
+	# Criar novo StaticBody3D para o chão
+	var floor_body = StaticBody3D.new()
+	floor_body.name = "Floor"
+	add_child(floor_body)
+	
+	# Criar MeshInstance3D
+	var floor_mesh = MeshInstance3D.new()
+	floor_mesh.name = "FloorMesh"
+	floor_body.add_child(floor_mesh)
+	
+	# Configurar mesh
+	var box_mesh = BoxMesh.new()
+	box_mesh.size = Vector3(level_size, 0.5, level_size)
+	floor_mesh.mesh = box_mesh
+	
+	# Configurar material
+	var material = StandardMaterial3D.new()
+	material.albedo_color = Color(0.1, 0.4, 0.1)  # Verde escuro
+	floor_mesh.material_override = material
+	
+	# Adicionar CollisionShape3D
+	var collision_shape = CollisionShape3D.new()
+	floor_body.add_child(collision_shape)
+	
+	var shape = BoxShape3D.new()
+	shape.size = Vector3(level_size, 0.5, level_size)
+	collision_shape.shape = shape
+	
+	# Posicionar
+	floor_body.global_position = Vector3(0, -0.25, 0)
+	
+	# Adicionar à lista de objetos
+	spawned_objects.append(floor_body)
+	
+	print("Chão criado com tamanho: ", level_size)
 
 func generate_obstacles(count: int):
 	for i in range(count):
 		# Escolher tipo de obstáculo aleatório
-		var obstacle_type = rng.randi_range(1, 3)
 		var obstacle_scene_to_use = obstacle_scene
 		
 		# Criar posição aleatória
@@ -122,8 +162,15 @@ func is_position_valid(pos: Vector3, min_distance: float) -> bool:
 func clear_level():
 	for obj in spawned_objects:
 		if is_instance_valid(obj):
-			obj.queue_free()
+			# Não destruir o chão se for o objeto floor
+			if obj.name != "Floor":
+				obj.queue_free()
+	
+	# Limpar array, mas manter referência ao chão
+	var floor_obj = get_node_or_null("Floor")
 	spawned_objects.clear()
+	if floor_obj and is_instance_valid(floor_obj):
+		spawned_objects.append(floor_obj)
 
 # Chamar quando jogador coletar todas moedas
 func check_level_complete():
@@ -137,3 +184,5 @@ func level_complete():
 	# Gerar próximo nível após delay
 	await get_tree().create_timer(2.0).timeout
 	generate_level()
+	
+	
