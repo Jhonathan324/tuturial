@@ -6,6 +6,7 @@ var bob_speed = 2.0
 var start_y
 
 func _ready():
+	add_to_group("coins")
 	start_y = position.y
 	body_entered.connect(_on_body_entered)
 
@@ -22,3 +23,5 @@ func collect():
 	$AnimationPlayer.play("collect")
 	await $AnimationPlayer.animation_finished
 	queue_free()
+	remove_from_group("coins")
+	get_parent().check_level_complete()

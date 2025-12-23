@@ -34,7 +34,10 @@ func _physics_process(_delta):
 	
 	if global_position.y < -10:
 		queue_free()
-
+		
+	
+func _on_body_entered(delta):
+	print("Encostou em:", delta.name)
 
 
 func die():

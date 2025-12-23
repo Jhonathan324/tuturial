@@ -5,7 +5,7 @@ extends Node3D
 @export var coin_scene: PackedScene
 @export var obstacle_scene: PackedScene
 @export var spawn_point_scene: PackedScene
-@export var level_size = 20.0
+@export var level_size = 100.0
 
 # Referências
 var rng = RandomNumberGenerator.new()
@@ -85,7 +85,7 @@ func generate_obstacles(count: int):
 		var obstacle_scene_to_use = obstacle_scene
 		
 		# Criar posição aleatória
-		var pos = get_random_position(10.0)
+		var pos = get_random_position(level_size - 10.0)
 		
 		# Instanciar obstáculo
 		var obstacle = obstacle_scene_to_use.instantiate()
@@ -104,8 +104,7 @@ func generate_obstacles(count: int):
 
 func generate_coins(count: int):
 	for i in range(count):
-		var pos = get_random_position(8.0)
-		
+		var pos = get_random_position(level_size - 8.0)
 		# Verificar se posição está longe de obstáculos
 		if is_position_valid(pos, 2.0):
 			var coin = coin_scene.instantiate()
@@ -113,7 +112,7 @@ func generate_coins(count: int):
 			coin.global_position = pos
 			
 			# Aleatorizar altura
-			coin.global_position.y = rng.randf_range(0.5, 2.0)
+			coin.start_y = rng.randf_range(0.5, 2)
 			
 			spawned_objects.append(coin)
 
