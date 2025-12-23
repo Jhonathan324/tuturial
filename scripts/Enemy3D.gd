@@ -1,5 +1,14 @@
 extends CharacterBody3D
 
+@export var base_health = 50
+@export var base_damage = 10
+@export var base_speed = 2.0
+
+var current_health = 50
+var current_damage = 10
+var current_speed = 2.0
+var difficulty_multiplier = 1.0
+
 var player
 var speed = 2.0
 var health = 50

@@ -1,11 +1,11 @@
 [gd_scene load_steps=17 format=3 uid="uid://8x73fk33ef7q"]
 
-[ext_resource type="Script" uid="uid://dkp25tw85dfvt" path="res://scripts/Player3D.gd" id="1_x50li"]
-[ext_resource type="PackedScene" uid="uid://rx1nv1har565" path="res://scenes/ui/HUD3D.tscn" id="2_olkgo"]
-[ext_resource type="PackedScene" uid="uid://cw5p7xwl2a5e2" path="res://scenes/weapons/Gun.tscn" id="2_wb730"]
-[ext_resource type="AudioStream" uid="uid://jn726jqho75u" path="res://assets/sounds/Tiro.mp3" id="3_e7i60"]
-[ext_resource type="PackedScene" uid="uid://0b0i0shhwxsa" path="res://scenes/entities/Enemy3D.tscn" id="3_olkgo"]
-[ext_resource type="PackedScene" uid="uid://tdrjyqkoas3j" path="res://scenes/items/Coin3D.tscn" id="5_e7i60"]
+[ext_resource type="Script" uid="uid://dkp25tw85dfvt" path="res://scripts/Player3D.gd" id="1_c1b6t"]
+[ext_resource type="PackedScene" uid="uid://cw5p7xwl2a5e2" path="res://scenes/weapons/Gun.tscn" id="2_h7hwo"]
+[ext_resource type="AudioStream" uid="uid://jn726jqho75u" path="res://assets/sounds/Tiro.mp3" id="3_x1x4e"]
+[ext_resource type="PackedScene" uid="uid://rx1nv1har565" path="res://scenes/ui/HUD3D.tscn" id="4_f5iw0"]
+[ext_resource type="PackedScene" uid="uid://0b0i0shhwxsa" path="res://scenes/entities/Enemy3D.tscn" id="5_yqoid"]
+[ext_resource type="PackedScene" uid="uid://tdrjyqkoas3j" path="res://scenes/items/Coin3D.tscn" id="6_cdmny"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ce3jd"]
 albedo_color = Color(0.39215687, 0.3529412, 1, 1)
@@ -44,7 +44,7 @@ background_color = Color(0.4, 0.4, 0.4, 1)
 
 [node name="Player3D" type="CharacterBody3D" parent="." groups=["player"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2643932, 0)
-script = ExtResource("1_x50li")
+script = ExtResource("1_c1b6t")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Player3D"]
 mesh = SubResource("CapsuleMesh_30yyk")
@@ -59,11 +59,11 @@ current = true
 [node name="WeaponHolder" type="Node3D" parent="Player3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.3, -0.2, -0.3)
 
-[node name="Gun" parent="Player3D/WeaponHolder" instance=ExtResource("2_wb730")]
+[node name="Gun" parent="Player3D/WeaponHolder" instance=ExtResource("2_h7hwo")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.3, 0.5, 0.5)
 
 [node name="ShootSound" type="AudioStreamPlayer3D" parent="Player3D"]
-stream = ExtResource("3_e7i60")
+stream = ExtResource("3_x1x4e")
 
 [node name="Obstacle1" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 1, 0)
@@ -128,25 +128,25 @@ environment = SubResource("Environment_0ymf6")
 
 [node name="UILayer" type="CanvasLayer" parent="."]
 
-[node name="HUD3D" parent="UILayer" instance=ExtResource("2_olkgo")]
+[node name="HUD3D" parent="UILayer" instance=ExtResource("4_f5iw0")]
 
-[node name="Enemy1" parent="." groups=["enemies"] instance=ExtResource("3_olkgo")]
+[node name="Enemy1" parent="." groups=["enemies"] instance=ExtResource("5_yqoid")]
 transform = Transform3D(0.9716317, 0, -0.236499, 0, 1, 0, 0.236499, 0, 0.9716317, -5.122342, 1.0242882, -8.089783)
 
-[node name="Enemy2" parent="." groups=["enemies"] instance=ExtResource("3_olkgo")]
+[node name="Enemy2" parent="." groups=["enemies"] instance=ExtResource("5_yqoid")]
 transform = Transform3D(0.9716317, 0, -0.236499, 0, 1, 0, 0.236499, 0, 0.9716317, -5.122342, 2.2016287, 5.713023)
 
-[node name="Enemy3" parent="." groups=["enemies"] instance=ExtResource("3_olkgo")]
+[node name="Enemy3" parent="." groups=["enemies"] instance=ExtResource("5_yqoid")]
 transform = Transform3D(0.9716317, 0, -0.236499, 0, 1, 0, 0.236499, 0, 0.9716317, 8.932161, 3.6734495, -5.451865)
 
-[node name="Enemy4" parent="." groups=["enemies"] instance=ExtResource("3_olkgo")]
+[node name="Enemy4" parent="." groups=["enemies"] instance=ExtResource("5_yqoid")]
 transform = Transform3D(0.9716317, 0, -0.236499, 0, 1, 0, 0.236499, 0, 0.9716317, -4.138092, 3.1970024, 25.048512)
 
-[node name="Coin1" parent="." instance=ExtResource("5_e7i60")]
+[node name="Coin1" parent="." instance=ExtResource("6_cdmny")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.4142284, 4.561724, -4.6730995)
 
-[node name="Coin2" parent="." instance=ExtResource("5_e7i60")]
+[node name="Coin2" parent="." instance=ExtResource("6_cdmny")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.4142284, 4.561724, 5.668535)
 
-[node name="Coin3" parent="." instance=ExtResource("5_e7i60")]
+[node name="Coin3" parent="." instance=ExtResource("6_cdmny")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.801573, 2.901585, 0.19063759)

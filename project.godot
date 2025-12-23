@@ -15,6 +15,10 @@ run/main_scene="uid://cj2jr85t4jhw3"
 config/features=PackedStringArray("4.5", "GL Compatibility")
 config/icon="res://icon.svg"
 
+[autoload]
+
+GameManager="*res://scenes/managers/GameManager.tscn"
+
 [input]
 
 move_forward={
